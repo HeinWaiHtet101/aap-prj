@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Application.Command.Create;
 using Todo.Application.Query.Get;
+using Todo.Application.Query.GetById;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,13 +14,18 @@ namespace Todo.API.Controllers
     public class TodoController(IMediator mediator) : ControllerBase
     {
 
+        #region Create
+
         // POST api/<TodoController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateTodoCommand command)
         {
             var result = await mediator.Send(command);
-            return CreatedAtAction(nameof(Get), new {Id = result.id}, result);
+            return CreatedAtAction(nameof(Get), new { Id = result.id }, result);
         }
+        #endregion
+
+        #region Read
 
         // GET: api/<TodoController>
         [HttpGet]
@@ -29,23 +36,42 @@ namespace Todo.API.Controllers
             return Ok(result);
         }
 
-        // GET api/<TodoController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesDefaultResponseType]
+        [Produces("application/json")]
+        [EndpointSummary("Get Todo byId")]
+        [EndpointDescription("Get Todo ById")]
+        public async Task<IActionResult> Get(Guid id)
         {
-            return "value";
+            // request bind with query for application call
+            var query = new GetTodoByIdQuery(id);
+
+            // call application via Mediator
+            var result = await mediator.Send(query);
+
+            // Result Response
+            return Ok(result);
         }
+        #endregion
+
+        #region Update
 
         // PUT api/<TodoController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
+        #endregion
+
+        #region Delete
 
         // DELETE api/<TodoController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
         }
+        #endregion
     }
 }

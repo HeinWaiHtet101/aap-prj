@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Todo.Application.Query.GetById
-{
-    internal class GetTodoByIdQuery
-    {
-    }
-}
+namespace Todo.Application.Query.GetById;
+
+public record GetTodoByIdQuery(
+    Guid id): IQuery<GetTodoByIdResult>;

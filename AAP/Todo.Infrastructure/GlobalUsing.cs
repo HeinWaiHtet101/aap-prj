@@ -7,3 +7,5 @@ global using BuildingBlocks.Exceptions;
 global using Todo.Infrastructure.Exceptions;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Todo.Domain.ValueObjects;
+global using Mapster;
+global using Todo.Domain.Interfaces;

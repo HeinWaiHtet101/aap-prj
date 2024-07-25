@@ -1,9 +1,5 @@
 ﻿
 
-using Mapster;
-using Todo.Domain.Interfaces;
-using Todo.Domain.ValueObjects;
-
 namespace Todo.Infrastructure.Repositories;
 
 public class TodoRepository(ApplicationDbContext context)
@@ -60,6 +56,6 @@ public class TodoRepository(ApplicationDbContext context)
     {
         return await context.Todo
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.Id.Value == id.Value);
+            .FirstOrDefaultAsync(x => x.Id == id);
     }
 }

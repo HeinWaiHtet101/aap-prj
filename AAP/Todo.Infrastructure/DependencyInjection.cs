@@ -1,6 +1,4 @@
-﻿
-
-using Todo.Domain.Interfaces;
+﻿using Todo.Domain.Interfaces;
 using Todo.Infrastructure.Repositories;
 
 namespace Todo.Infrastructure;
