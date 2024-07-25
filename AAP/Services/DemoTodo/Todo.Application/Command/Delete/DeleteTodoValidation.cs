@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace Todo.Application.Command.Delete;
 
-namespace Todo.Application.Command.Delete
+internal class DeleteTodoValidation
+    : AbstractValidator<DeleteTodoCommand>
 {
-    internal class DeleteTodoValidation
+    public DeleteTodoValidation()
     {
+        RuleFor(x => x.id).NotEmpty().WithMessage("Delete key should be added");
     }
 }

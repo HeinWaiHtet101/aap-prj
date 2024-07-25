@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Application.Command.Create;
+using Todo.Application.Command.Delete;
 using Todo.Application.Query.Get;
 using Todo.Application.Query.GetById;
 
@@ -67,10 +68,22 @@ namespace Todo.API.Controllers
 
         #region Delete
 
-        // DELETE api/<TodoController>/5
+
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        [Produces("application/json")]
+        [EndpointSummary("Delete Todo")]
+        [EndpointDescription("Delete Todo ")]
+        public async Task<IActionResult> Delete(Guid id)
         {
+            // bind request as command
+            var command = new DeleteTodoCommand(id);
+
+            var result = await mediator.Send(command);
+
+            return Ok(result);
         }
         #endregion
     }
