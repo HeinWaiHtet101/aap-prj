@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{C1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoTodo", "DemoTodo", "{BC5AA4B5-0580-4BE3-B92B-C7D0C7030FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.API", "Services\DemoTodo\Todo.API\Todo.API.csproj", "{13A8068B-6E1F-48AC-A0F6-AC7909EC58C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.API", "Services\DemoTodo\Todo.API\Todo.API.csproj", "{13A8068B-6E1F-48AC-A0F6-AC7909EC58C0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0D98C689-FC5B-40D7-A8CA-9D87C8349848}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{17A951F9-7351-43AA-842B-DCAD226CE2FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common\Common.csproj", "{17A951F9-7351-43AA-842B-DCAD226CE2FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
