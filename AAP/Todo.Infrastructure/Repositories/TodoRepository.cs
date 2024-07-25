@@ -36,6 +36,7 @@ public class TodoRepository(ApplicationDbContext context)
             throw new TodoNotFoundException(todo.Id.Value);
 
         data.Adapt<Domain.Entities.Todo>();
+        context.Todo.Update(todo);
         await context.SaveChangesAsync();
         return true;
     }
@@ -48,7 +49,7 @@ public class TodoRepository(ApplicationDbContext context)
             throw new TodoNotFoundException(id.Value);
 
         context.Todo.Remove(data);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
         return true;
     }
 

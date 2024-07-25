@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Todo.Application.Command.Create;
 using Todo.Application.Command.Delete;
+using Todo.Application.Command.Update;
 using Todo.Application.Query.Get;
 using Todo.Application.Query.GetById;
 
@@ -17,8 +18,13 @@ namespace Todo.API.Controllers
 
         #region Create
 
-        // POST api/<TodoController>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        [Produces("application/json")]
+        [EndpointSummary("Add Todo")]
+        [EndpointDescription("Add Todo ")]
         public async Task<IActionResult> Post([FromBody] CreateTodoCommand command)
         {
             var result = await mediator.Send(command);
@@ -28,8 +34,13 @@ namespace Todo.API.Controllers
 
         #region Read
 
-        // GET: api/<TodoController>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        [Produces("application/json")]
+        [EndpointSummary("Get Todo")]
+        [EndpointDescription("Get Todo ")]
         public async Task<IActionResult> Get()
         {
             var command = new GetTodoQuery();
@@ -59,15 +70,23 @@ namespace Todo.API.Controllers
 
         #region Update
 
-        // PUT api/<TodoController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        [Produces("application/json")]
+        [EndpointSummary("Update Todo")]
+        [EndpointDescription("Update Todo ")]
+        public async Task<IActionResult> Put([FromBody] UpdateTodoCommand command)
         {
+            // called application by command
+            var result = await mediator.Send(command);
+
+            return Ok(result);
         }
         #endregion
 
         #region Delete
-
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]

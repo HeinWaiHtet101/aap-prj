@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+namespace Todo.Application.Command.Update;
 
-namespace Todo.Application.Command.Update
+public class UpdateTodoHandler(ITodoService service)
+    : ICommandHandler<UpdateTodoCommand, UpdateTodoResult>
 {
-    internal class UpdateTodoHandler
+    public async Task<UpdateTodoResult> Handle(
+        UpdateTodoCommand command,
+        CancellationToken cancellationToken)
     {
+        // map command as Entity
+        var todo = command.GetTodoByUpdateTodoDto();
+
+        // update via infra layer
+        var result = await service.UpdateTodo(todo);
+
+        return new UpdateTodoResult(result);
     }
 }

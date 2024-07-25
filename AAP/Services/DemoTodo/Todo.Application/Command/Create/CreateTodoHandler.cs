@@ -15,7 +15,7 @@ public class CreateTodoHandler(ITodoService todoService)
         CancellationToken cancellationToken)
     {
         // Set Command to entity
-        var todo = command.GetTodo();
+        var todo = command.GetTodoByCreateTodoDto();
 
         // Db process
         var result = await todoService.AddTodo(todo);
