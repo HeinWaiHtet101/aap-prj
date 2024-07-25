@@ -21,6 +21,6 @@ public class CreateTodoHandler(ITodoService todoService)
         var result = await todoService.AddTodo(todo);
 
         // Response
-        return result.Adapt<CreateTodoResult>();
+        return new CreateTodoResult(result);
     }
 }

@@ -16,4 +16,25 @@ public static class TodoExtension
             entity.endDate);
         return todo;
     }
+
+    public static TodoDto EntityToTodoDto(this Domain.Entities.Todo entity)
+    {
+        return new TodoDto(
+            entity.Id.Value,
+            entity.Name.Value,
+            entity.IsDone,
+            entity.StartDate,
+            entity.EndDate);
+    }
+
+    public static IEnumerable<TodoDto> EntityToTodoDtoList(this IEnumerable<Domain.Entities.Todo> entities)
+    {
+        return entities.Select(
+            entity => new TodoDto(
+                entity.Id.Value,
+                entity.Name.Value,
+                entity.IsDone,
+                entity.StartDate,
+                entity.EndDate));
+    }
 }

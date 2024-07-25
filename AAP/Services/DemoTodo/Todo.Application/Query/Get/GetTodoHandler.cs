@@ -11,7 +11,9 @@ public class GetTodoHandler(ITodoService service)
         // Db Process
         var result = await service.GetAllTodos();
 
+        var response = result.EntityToTodoDtoList();
+
         // Respond
-        return result.Adapt<GetTodoResult>();
+        return new GetTodoResult(response);
     }
 }

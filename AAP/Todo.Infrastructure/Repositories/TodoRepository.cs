@@ -12,6 +12,7 @@ public class TodoRepository(ApplicationDbContext context)
     public async Task<Guid> AddAsync(Domain.Entities.Todo todo)
     {
         await context.Todo.AddAsync(todo);
+        await context.SaveChangesAsync();
         return todo.Id.Value;
     }
 
