@@ -6,3 +6,6 @@ global using FluentValidation;
 global using Todo.Domain.Interfaces;
 global using Todo.Application.Mappings;
 global using Todo.Application.Query.Get;
+global using BuildingBlocks.Behaviors;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;

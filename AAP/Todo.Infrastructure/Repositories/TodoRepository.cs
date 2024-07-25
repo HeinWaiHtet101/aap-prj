@@ -9,10 +9,10 @@ namespace Todo.Infrastructure.Repositories;
 public class TodoRepository(ApplicationDbContext context)
     : ITodoRepository
 {
-    public async Task<bool> AddAsync(Domain.Entities.Todo todo)
+    public async Task<Guid> AddAsync(Domain.Entities.Todo todo)
     {
         await context.Todo.AddAsync(todo);
-        return true;
+        return todo.Id.Value;
     }
 
     public async Task<IEnumerable<Domain.Entities.Todo>> GetAllAsync()

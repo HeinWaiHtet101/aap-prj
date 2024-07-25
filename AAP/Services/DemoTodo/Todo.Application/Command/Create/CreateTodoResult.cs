@@ -1,4 +1,4 @@
 ﻿
 namespace Todo.Application.Command.Create;
 
-public record CreateTodoResult(bool isSuccess);
+public record CreateTodoResult(Guid id);

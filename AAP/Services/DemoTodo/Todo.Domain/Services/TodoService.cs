@@ -12,7 +12,7 @@ public class TodoService : ITodoService
         this.repository = repository;
     }
 
-    public async Task<bool> AddTodo(Entities.Todo todo)
+    public async Task<Guid> AddTodo(Entities.Todo todo)
     {
         return await this.repository.AddAsync(todo);
     }
