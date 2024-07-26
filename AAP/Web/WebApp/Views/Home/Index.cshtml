@@ -1,8 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Todo
+<style>
+
+   #calendar {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+</style>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div>
+    <ul>
+        <li>Name : @Model.Name</li>
+        <li>IsDone : @Model.IsDone</li>
+        <li>StartDate : @Model.StartDate</li>
+        <li>EndDate : @Model.EndDate</li>
+    </ul>
+</div>
+
+<div id='calendar'></div>
+
+@section Scripts {
+    <script src="~/js/date/date.global.min.js"></script>
+    <script src="~/js/date-demo/background-events.js"></script>
+}

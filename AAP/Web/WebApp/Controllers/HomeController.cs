@@ -1,21 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebApp.Models;
 
 namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ITodoRepository repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ITodoRepository repo)
         {
             _logger = logger;
+            this.repo = repo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            //var r = await repo.GetAllAsync();
+            var model = await repo.GetByIdAsync(Guid.Parse("c62caf3c-7898-4605-bdd9-cc4e5780aaa0"));
+            return View(model?.Todo);
         }
 
         public IActionResult Privacy()
