@@ -1,6 +1,18 @@
 ﻿namespace WebApp.Models;
 
-public class TodoWrapper
+public record TodoWrapper(
+    Todo Todo);
+
+public record TodoList
 {
-    public Todo Todo { get; set; }
+    public List<Todo> Todos { get; set; }
 }
+
+public record DeleteTodo(
+    bool isSuccess);
+
+public record UpdateTodo(
+    bool isSuccess);
+
+public record CreateTodo(
+    Guid id);

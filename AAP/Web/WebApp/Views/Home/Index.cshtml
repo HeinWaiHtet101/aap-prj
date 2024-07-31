@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model Todo
+@model TodoList
 <style>
 
    #calendar {
@@ -11,17 +11,61 @@
 
 </style>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 <div>
-    <ul>
-        <li>Name : @Model.Name</li>
-        <li>IsDone : @Model.IsDone</li>
-        <li>StartDate : @Model.StartDate</li>
-        <li>EndDate : @Model.EndDate</li>
-    </ul>
+    <h2>Create To Do</h2>
+    @Html.ActionLink("Create", "CreateTodo")
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    IsDone
+                </th>
+                <th>
+                    StartDate
+                </th>
+                <th>
+                    EndDate
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model.Todos.Count == 0)
+            {
+                <tr>
+                    <h2>Nothing To Show</h2>
+                </tr>
+            }
+            @{
+                foreach (var current in Model.Todos)
+                {
+                    <tr>
+                        <td>Name : @current.Name</td>
+                        <td>IsDone : @current.IsDone</td>
+                        <td>StartDate : @current.StartDate</td>
+                        <td>EndDate : @current.EndDate</td>
+                        <td>
+                            @Html.ActionLink("Details", "GetTodo", new {id = current.Id})
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", new { id = current.Id })
+                        </td>
+                        <td>
+                            @Html.ActionLink("Update", "Update", new { id = current.Id })
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
 </div>
 
 <div id='calendar'></div>

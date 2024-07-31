@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = ViewBag.Action;
+}
+@model Todo
+<form method="post">
+    <input type="hidden" value="@Model.Id" asp-for="Id" />
+    <input type="text" value="@Model.Name" asp-for="Name" />
+    <input type="text" value="@Model.IsDone" asp-for="IsDone"/>
+    <input type="date" value="@Model.StartDate" asp-format="{0:yyyy-MM-dd}" asp-for="StartDate" />
+    <input type="date" value="@Model.EndDate" asp-format="{0:yyyy-MM-dd}" asp-for="EndDate" />
+    <button asp-controller="Home" asp-action="@ViewBag.Action">
+        @ViewBag.Action
+    </button>
+</form>
